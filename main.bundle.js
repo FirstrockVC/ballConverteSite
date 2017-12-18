@@ -271,7 +271,7 @@ var Config = (function () {
     }
     Object.defineProperty(Config, "API", {
         get: function () {
-            return 'http://107.170.76.230:3000/cohort';
+            return 'https://107.170.76.230:3000/cohort';
         },
         enumerable: true,
         configurable: true
