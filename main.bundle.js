@@ -271,7 +271,7 @@ var Config = (function () {
     }
     Object.defineProperty(Config, "API", {
         get: function () {
-            return 'https://107.170.76.230:3000/cohort';
+            return 'https://arcane-earth-62779.herokuapp.com/';
         },
         enumerable: true,
         configurable: true
