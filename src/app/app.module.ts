@@ -7,7 +7,6 @@ import { Routing } from './app.routes';
 import { UploadFileComponent } from './components/uploadFile/uploadFile.component';
 import { AppComponent } from './app.component';
 import { FileDropModule } from 'ngx-file-drop';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -21,7 +20,6 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     FormsModule,
     ReactiveFormsModule,
     FileDropModule,
-    AngularFontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
