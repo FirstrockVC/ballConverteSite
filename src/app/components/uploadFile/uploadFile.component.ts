@@ -49,13 +49,13 @@ export class UploadFileComponent {
        }
        swal({
         title: 'Success',
-        text: 'Upload completado',
+        text: 'The data was imported correctly',
         type: 'success'
         });
       }, (error) => {
         swal({
           title: 'Error',
-          text: 'Upload no completado',
+          text: 'An error occurs when importing the data',
           type: 'error'
           });
       });
