@@ -20,6 +20,12 @@ export class UploadFileComponent {
   public events;
   public event;
   public typeReport = 'cumulative';
+  public lineChartLegend:boolean = true;
+  public lineChartType:string = 'line';
+  public datachart;
+  public lineChartLabels:Array<any>;
+  public lineChartData:Array<any>=[];
+  public loadChart= false;
 
   constructor(private uploadFileService: UploadFileService) { }
 
@@ -66,8 +72,15 @@ export class UploadFileComponent {
       useBom: true
     };
     this.uploadFileService.downloadData(this.event).subscribe((result) => {
+      this.lineChartLabels = _.map(_.uniqBy(result, 'activity_day'), 'activity_day');
+      const labels = _.map(_.uniqBy(result, 'cohort_person'), 'cohort_person');
+      const chart=[];
+      _.forEach(labels,(value) => {
+        chart.push({ data: _.map(_.filter(result,(o) => { return o.cohort_person === value }),'cumulative'), label: value});
+      });
+      this.lineChartData = chart;
+      this.loadChart = true;
       new Angular2Csv(result, 'report', options);
-      console.log();
      }, (error) => {
        swal({
          title: 'Error',
@@ -76,5 +89,8 @@ export class UploadFileComponent {
          });
      });
    }
+  public lineChartOptions:any = {
+    responsive: true
+  };
 
 }

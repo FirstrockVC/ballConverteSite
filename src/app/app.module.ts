@@ -7,6 +7,7 @@ import { Routing } from './app.routes';
 import { UploadFileComponent } from './components/uploadFile/uploadFile.component';
 import { AppComponent } from './app.component';
 import { FileDropModule } from 'ngx-file-drop';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { FileDropModule } from 'ngx-file-drop';
     FormsModule,
     ReactiveFormsModule,
     FileDropModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

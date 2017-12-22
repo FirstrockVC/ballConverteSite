@@ -23,9 +23,6 @@ h1.template-style {
   padding-bottom: 1rem;
   border-bottom: .05rem solid #e5e5e5;
 }
-.container {
-  max-width: 46rem !important;
-}
 .footer {
   padding-top: 1.5rem !important;
   color: #777;
