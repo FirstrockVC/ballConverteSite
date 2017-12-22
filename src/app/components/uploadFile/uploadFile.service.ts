@@ -10,7 +10,13 @@ export class UploadFileService {
 
   public uploadData(events): Observable<any> {
     const data = { data: events }
-		return this.http.post(`${Config.API}`, data)
+		return this.http.post(`${Config.API}` + '/uploadFile', data)
+			.map(Config.extractData).catch(Config.handleError);
+  }
+
+  public downloadData(event): Observable<any> {
+    const data = { event }
+		return this.http.post(`${Config.API}` + '/convertCulumative', data)
 			.map(Config.extractData).catch(Config.handleError);
   }
 }

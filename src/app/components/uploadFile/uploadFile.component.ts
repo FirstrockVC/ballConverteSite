@@ -16,56 +16,65 @@ import { Angular2Csv } from 'angular2-csv/Angular2-csv';
 export class UploadFileComponent {
 
   public data = null;
-  public submitted = false;
-  public files: UploadFile[] = [];
-  public status = false;
-  public typeCohorts = 'weekly';
+  public file;
+  public events;
+  public event;
+  public typeReport = 'cumulative';
 
   constructor(private uploadFileService: UploadFileService) { }
 
   public ngOnInit() {
   }
 
-  public dropped(event: UploadEvent) {
-     this.files = event.files;
-     for (var file of event.files) {
-       file.fileEntry.file(info => {
-        this.onValidate(info);
-      });
-     }
-   }
+  public onFileChange(event) {
+    this.file = event.target.files[0];
+  }
 
-  public onValidate(data){
+  public onUpload() {
+    const events= [];
+    let reader = new FileReader();
+    reader.readAsText(this.file);
+    reader.onload = () => {
+    let text = reader.result;
+    this.uploadFileService.uploadData(text).subscribe((result) => {
+       if (result.length > 0){
+        this.events= result;
+        this.event = result[0].name;
+       }
+       swal({
+        title: 'Success',
+        text: 'Upload completado',
+        type: 'success'
+        });
+      }, (error) => {
+        swal({
+          title: 'Error',
+          text: 'Upload no completado',
+          type: 'error'
+          });
+      });
+    }
+  }
+
+  public onDownload(){
     var options = {
       fieldSeparator: ',',
       quoteStrings: '',
       decimalseparator: '.',
       showLabels: true,
-      headers:["cohort_week","activity_week","users","revenue"],
+      headers:["cohort_Person","activity_day","cumulative","unic","date"],
       useBom: true
     };
-    this.submitted = true;
-    if (data !== null){
-      const events= [];
-      let reader = new FileReader();
-      reader.readAsText(data);
-      reader.onload = () => {
-      let text = reader.result;
-       this.uploadFileService.uploadData(text).subscribe((result) => {
-        swal({
-          title: 'Success',
-          text: 'Report generated correctly',
-          type: 'success'
-        });
-        new Angular2Csv(result, 'report', options);
-        }, (error) => {
-          swal({
-            title: 'Error!',
-            text: 'An error occurs when generating the report',
-            type: 'error'
-          });
-        });
-      }
-    };
-  }
+    this.uploadFileService.downloadData(this.event).subscribe((result) => {
+      new Angular2Csv(result, 'report', options);
+      console.log();
+     }, (error) => {
+       swal({
+         title: 'Error',
+         text: 'Upload no completado',
+         type: 'error'
+         });
+     });
+   }
+
 }
