@@ -177,13 +177,13 @@ var UploadFileComponent = (function () {
                 }
                 __WEBPACK_IMPORTED_MODULE_3_sweetalert2___default()({
                     title: 'Success',
-                    text: 'Upload completado',
+                    text: 'The data was imported correctly',
                     type: 'success'
                 });
             }, function (error) {
                 __WEBPACK_IMPORTED_MODULE_3_sweetalert2___default()({
                     title: 'Error',
-                    text: 'Upload no completado',
+                    text: 'An error occurs when importing the data',
                     type: 'error'
                 });
             });
