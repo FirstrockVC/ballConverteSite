@@ -14,8 +14,8 @@ export class UploadFileService {
 			.map(Config.extractData).catch(Config.handleError);
   }
 
-  public downloadData(event): Observable<any> {
-    const data = { event }
+  public downloadData(event,quantity): Observable<any> {
+    const data = { event,quantity }
 		return this.http.post(`${Config.API}` + '/convertCulumative', data)
 			.map(Config.extractData).catch(Config.handleError);
   }

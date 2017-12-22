@@ -13,12 +13,20 @@
                             </div>
                         </div>
                       </div>
-                <div class="form-group" style="text-align: left;">
-                  <label>Event</label>
-                  <div class="input-group">
-                    <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="event">
-                      <option *ngFor="let event of events" [value]="event.name">{{event.name}}</option>
-                    </select>
+                <div class="form-group row" style="text-align: left;">
+                  <div class="col-lg-6">
+                      <label>Event</label>
+                      <div class="input-group">
+                        <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="event">
+                          <option *ngFor="let event of events" [value]="event.name">{{event.name}}</option>
+                        </select>
+                      </div>
+                  </div>
+                  <div  class="col-lg-6">
+                      <label>Quantity</label>
+                      <div class="input-group">
+                        <input [ngModelOptions]="{standalone: true}" type="number" class="form-control" [(ngModel)]="quantity" />
+                      </div>
                   </div>
                 </div>
                 <div class="form-group" style="text-align: left;">

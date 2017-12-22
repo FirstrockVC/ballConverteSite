@@ -26,6 +26,7 @@ export class UploadFileComponent {
   public lineChartLabels:Array<any>;
   public lineChartData:Array<any>=[];
   public loadChart= false;
+  public quantity=1;
 
   constructor(private uploadFileService: UploadFileService) { }
 
@@ -71,7 +72,7 @@ export class UploadFileComponent {
       headers:["cohort_Person","activity_day","cumulative","unic","date"],
       useBom: true
     };
-    this.uploadFileService.downloadData(this.event).subscribe((result) => {
+    this.uploadFileService.downloadData(this.event, this.quantity).subscribe((result) => {
       this.lineChartLabels = _.map(_.uniqBy(result, 'activity_day'), 'activity_day');
       const labels = _.map(_.uniqBy(result, 'cohort_person'), 'cohort_person');
       const chart=[];
